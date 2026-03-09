@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-74JZKJCRZ6"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-74JZKJCRZ6');
+    </script>
+
+    <title>Sequential Testing</title>
+
+    <meta name="description" content="Sequential Testing">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+
+    <style>
+        .nav-pills {
+          position: relative;
+          display: inline;
+        }
+        .imtip {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .container {
+            max-width: 70%; /* Set the max-width as desired */
+            margin: auto; /* Centers the container */
+        }
+        .full-width-video-container {
+            width: 120%; /* Set wider than viewport */
+            position: relative;
+            left: 50%; /* Move to the center */
+            transform: translateX(-50%); /* Center the container */
+            display: flex;
+            justify-content: center; /* Center videos inside */
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main">
+        <br>
+        <div class="row mt-2">
+            <div class="col-md-12 text-center">
+                <h1 class="heading" style="font-size: 40px !important;">
+                    Sequential Testing for Efficient Policy (STEP) Comparison
+                </h1>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                <li><a href="//sites.google.com/view/dasnyder/home">David Snyder</a></li>
+                <li><a href="//aasherh.github.io/">Asher Hancock</a></li>
+                <li><a href="//abadithela.github.io/">Apurva Badithela</a></li>
+                <li><a href="">Emma Dixon</a></li><br>
+                <li><a href="">Patrick Miller</a></li>
+                <li><a href="//scholar.google.se/citations?user=2xjjS3oAAAAJ&hl=en">Rares Andrei Ambrus</a></li>
+                <li><a href="//irom-lab.princeton.edu/majumdar">Anirudha Majumdar</a></li>
+                <li><a href="//scholar.google.ca/citations?user=JAmTk5gAAAAJ&hl=en">Masha Itkina</a></li>
+                <li><a href="//harukins.github.io/">Haruki Nishimura</a></li>
+                </ul>
+            </div>
+            <br>
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                <li style="display: inline; border-right: 2px solid #bbb; padding-right: 10px; margin-right: 10px;">
+                    <a href="https://www.arxiv.org/abs/2503.10966">Paper</a>
+                </li>
+                <li style="display: inline;">
+                    <a href="https://github.com/TRI-ML/sequentialized_barnard_tests">Code</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <br>
+                <p class="text-justify text-center large-text">
+                    TL;DR: We introduce STEP, a finite-sample, near-optimal sequential testing procedure for determining statistically significant performance improvements between robotic policies while requiring a near-minimal number of evaluation trials. STEP allows for tunable levels of Type-I and Type-II error risk, and presents the user with the capacity to interpretably encode prior information about test regimes in the form of a naturally specified 'risk budget.'
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 text-center">
+                <video id="v0" width="75%" preload="metadata" playsinline muted loop autoplay>
+                    <source src="videos/Anchor_Video_Border_Trimmed_Braked_v4.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <br><br>
+                <h3>
+                    Problem formulation
+                </h3>
+                <p class="text-justify">
+                    We consider the problem of policy comparison for two robot policies using binary success/failure evaluation metrics. We formulate the problem as a canonical statistical testing procedure, corresponding to null (red) and alternative (blue) hypotheses as shown below:
+                    <br><p style="text-align:center;">
+                        <image src="img/testing_problem.png" width="65%">
+                    </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <br><br>
+                <h3>
+                    Approach overview
+                </h3>
+                <p class="text-justify">
+                    STEP utilizes an optimization-based procedure to approximately solve an optimal-stopping partial differential equation with a finite-sample-exact representation at the resolution of the testing problem. Standard methods solve the asymptotic solution of a reverse heat equation, and are inefficient and sometimes ill-posed at small-to-moderate N. 
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center">
+                            <video id="v0" width="75%" preload="metadata" playsinline muted loop autoplay>
+                                <source src="videos/policy_synthesis.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <br><br>
+                <h3>
+                    Performance evaluation on simulated data
+                </h3>
+                <p class="text-justify">
+                    In the following, we exhaustively evaluate STEP and baseline methods in a variety of conditions. 45 pairs (p0, p1) are selected at intervals of 0.1, with offset of 0.05 (e.g.: (0.05, 0.15), (0.05, 0.25), ..., (0.85, 0.95)). For each of these pairs, 5000 evaluation sequences are drawn from the associated Bernoulli distribution to evaluate power, and 5000 sequences are drawn to evaluate FPR on the associated worst-case null hypothesis pair.  
+                    <br>
+                <p class="text-justify">
+                    STEP demonstrates near-optimal statistical power across a range of sample complexity scales (order ~5 -- 500), corresponding to comparison instances of varying difficulty. In so doing, it Pareto dominates existing methods in the finite-sample regime (e.g., for evaluation trial counts less than ~1000), as shown in the following plot: 
+                    <br><br>
+                    <p style="text-align:center;">
+                        <image src="img/Power_img.png" width="95%">
+                    </p>
+                <p class="text-justify">
+                    <br><br>
+                    Additionally, STEP explicitly controls the false positive rate (Type-I Error rate) uniformly across the space of worst-case null hypotheses, which ensures maximal efficiency in the `spending' of risk. This is shown in the uniformly light blue shade of the FPR plot, below.
+                    <br><br>
+                    <p style="text-align:center;">
+                        <image src="img/FPR_img.png" width="95%">
+                    </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <br><br>
+                <h3>
+                    Performance evaluation on hardware rollouts
+                </h3>
+                <p class="text-justify">
+                    In the following, we evaluate STEP and baseline methods in a variety of <strong>real hardware evaluation sequences</strong>. 
+                    <br><br>
+                <p class="text-justify">
+                    All sequential methods demonstrate efficient reduction in required evaluation trials for easy (large-gap) comparison settings (<strong>FoldRedTowel</strong>, <strong>CleanUpSpill</strong>). For smaller gaps, we demonstrate that STEP performs significantly better, especially in the low-variance regime corresponding to the lower-left and upper-right corners of the preceding plots of statistical power (<strong>StackCube</strong>). We also show that for small gaps, <i>significantly more trials than are standard in the robotics literature </i>are required to reliably compare policy performance (<strong>CarrotOnPlate</strong>, <strong>EggplantInBasket</strong>):
+                    <br><br>
+                    <p style="text-align:center;">
+                        <image src="img/Results_Table.png" width="95%">
+                    </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <br><br>
+                <h3>
+                    Additional STEP properties
+                </h3>
+                <p class="text-justify">
+                    We discuss several properties of STEP evaluation with strong practical benefits to the user. 
+                    <br><br>
+                <p class="text-justify">
+                    STEP demonstrates significant robustness to the choice of n_max, allowing the user to conservatively allocate significant evaluation capacity <i>without requiring many additional trials in easy cases</i>. This is significantly more efficient than having to pre-select an exact batch size!
+                    <br><br>
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center">
+                            <video id="v0" width="75%" preload="metadata" playsinline muted loop autoplay>
+                                <source src="videos/Robust_to_Nmax_Trimmed_Braked_v1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                <p class="text-justify">
+                    <br><br>
+                    Additionally, STEP efficiently adapts to the underlying problem difficulty, ensuring that at all difficulty levels of the underlying comparison (i.e., easy cases with large gaps and hard cases with small gaps) the decision is made with near-optimal expected sample complexity. 
+                    <br><br>
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center">
+                            <video id="v0" width="75%" preload="metadata" playsinline muted loop autoplay>
+                                <source src="videos/Adaptation_to_Problem_Difficulty_Trimmed_Braked_v1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <br><br>
+                <h3>
+                    Citation 
+                </h3>
+                <div class="form-group col-md-12">
+                    <textarea id="bibtex" class="form-control" rows="7" readonly>
+    @inproceedings{step2025,
+        title = {Is {Your} {Imitation} {Learning} {Policy} {Better} than {Mine}? {Policy} {Comparison} with {Near}-{Optimal} {Stopping}},
+        author = {Snyder, David and Hancock, Asher James and Badithela, Apurva and Dixon, Emma and Miller, Patrick and Ambrus, Rares Andrei and Majumdar, Anirudha and Itkina, Masha and Nishimura, Haruki},
+        booktitle={arXiv preprint arXiv:2503.10966}
+        year = {2025},
+}   </textarea>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
