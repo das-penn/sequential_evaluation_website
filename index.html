@@ -15,7 +15,7 @@
     gtag('config', 'G-74JZKJCRZ6');
     </script>
 
-    <title>Sequential Testing</title>
+    <title>NSCORE: Nonparametric Sequential Comparison</title>
 
     <meta name="description" content="Sequential Testing">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,7 +60,7 @@
         <div class="row mt-2">
             <div class="col-md-12 text-center">
                 <h1 class="heading" style="font-size: 40px !important;">
-                    Sequential Testing for Efficient Policy (STEP) Comparison
+                    NSCORE: Nonparametric Sequential Comparison for Rigorous Evaluation
                 </h1>
             </div>
         </div>
@@ -68,13 +68,11 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <ul class="list-inline">
-                <li><a href="//sites.google.com/view/dasnyder/home">David Snyder</a></li>
-                <li><a href="//aasherh.github.io/">Asher Hancock</a></li>
+                <li><a href="//dasnyder5.github.io/">David Snyder</a></li>
                 <li><a href="//abadithela.github.io/">Apurva Badithela</a></li>
-                <li><a href="">Emma Dixon</a></li><br>
-                <li><a href="">Patrick Miller</a></li>
-                <li><a href="//scholar.google.se/citations?user=2xjjS3oAAAAJ&hl=en">Rares Andrei Ambrus</a></li>
                 <li><a href="//irom-lab.princeton.edu/majumdar">Anirudha Majumdar</a></li>
+                <li><a href="//nikolaimatni.github.io">Nikolai Matni</a></li>
+                <li><a href="//www.georgejpappas.org">George Pappas</a></li>
                 <li><a href="//scholar.google.ca/citations?user=JAmTk5gAAAAJ&hl=en">Masha Itkina</a></li>
                 <li><a href="//harukins.github.io/">Haruki Nishimura</a></li>
                 </ul>
@@ -83,10 +81,10 @@
             <div class="col-md-12 text-center">
                 <ul class="list-inline">
                 <li style="display: inline; border-right: 2px solid #bbb; padding-right: 10px; margin-right: 10px;">
-                    <a href="https://www.arxiv.org/abs/2503.10966">Paper</a>
+                    <a href="">Paper</a>
                 </li>
                 <li style="display: inline;">
-                    <a href="https://github.com/TRI-ML/sequentialized_barnard_tests">Code</a>
+                    <a href="https://github.com/dasnyder5/nscore">Code</a>
                 </li>
                 </ul>
             </div>
@@ -96,7 +94,7 @@
             <div class="col-md-12 col-lg-10">
                 <br>
                 <p class="text-justify text-center large-text">
-                    TL;DR: We introduce STEP, a finite-sample, near-optimal sequential testing procedure for determining statistically significant performance improvements between robotic policies while requiring a near-minimal number of evaluation trials. STEP allows for tunable levels of Type-I and Type-II error risk, and presents the user with the capacity to interpretably encode prior information about test regimes in the form of a naturally specified 'risk budget.'
+                    TL;DR: We introduce NSCORE, a finite-sample-valid, nonparametric sequential testing procedure for determining statistically significant performance improvements between robotic policies that requires a near-minimal number of evaluation trials in expectation. NSCORE allows for tunable levels of controlled Type-I error risk. Though NSCORE requires only minimal assumptions over the distribution of the evaluation metric, it can rapidly adapt to parametric structure without sacrificing validity. 
                 </p>
             </div>
         </div>
@@ -116,9 +114,9 @@
                     Problem formulation
                 </h3>
                 <p class="text-justify">
-                    We consider the problem of policy comparison for two robot policies using binary success/failure evaluation metrics. We formulate the problem as a canonical statistical testing procedure, corresponding to null (red) and alternative (blue) hypotheses as shown below:
+                    We consider the problem of policy comparison for two robot policies using any bounded evaluation metric. We consider the quantity of interest to be the <i>mean</i> performance of the policy; this yields a canonical statistical testing problem of <i>mean comparison</i>, corresponding to null (red) and alternative (blue) hypotheses as shown below:
                     <br><p style="text-align:center;">
-                        <image src="img/testing_problem.png" width="65%">
+                        <image src="img/Nonparametric_Testing_Problem.png" width="65%">
                     </p>
             </div>
         </div>
