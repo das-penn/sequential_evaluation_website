@@ -191,7 +191,7 @@
                     First, we demonstrate that NSCORE<sub>2</sub> closely approximates the structured &Theta;-SAVI method when structure is present. We illustrate this first on synthetic Bernoulli data, where we confirm that STEP is SOTA, but illustrate that NSCORE<sub>&infin;</sub> (which requires no structural assumptions) approximates the performance in terms of expected time-to-decision. NSCORE<sub>&infin;</sub> denotes the case with minimal structural prior, where an approximately 4-5% hit is taken in terms of time-to-decision. NSCORE<sub>2</sub> denotes the case where NSCORE is given the same parametric information as &Theta;-SAVI, and we observe that performance is exactly recovered (these times are the same up to statistical noise). Note, however, that <sub>2</sub> <i>remains valid</i> if the data is not binary (it is simply less efficient), whereas &Theta;-SAVI does not remain valid in that setting. 
                     <br>
                     <p style="text-align:center;">
-                        <image src="img/nscore_vs_thetaSavi_synthetic_bernoulli.png" width="75%">
+                        <image src="img/nscore_vs_thetaSavi_synthetic_bernoulli.png" width="55%">
                     </p>
                 <p class="text-justify">
                     <br><br>
@@ -204,7 +204,7 @@
                     Next, we compare fully nonparametric methods on general progress metrics by comparing NSCORE<sub>&infin;</sub> with the WSR procedure. On simulated data from progress metrics of policies trained on the RL Mujoco baselines, we observe the desired Pareto dominance: when the comparisons are easy, NSCORE<sub>&infin;</sub> and WSR are similar; when the comparisons are hard, NSCORE<sub>&infin;</sub> significantly outperforms WSR. 
                     <br>
                     <p style="text-align:center;">
-                        <image src="img/nscore_vs_wsr_RL.png" width="95%">
+                        <image src="img/nscore_vs_wsr_RL.png" width="85%">
                     </p>
                 <p class="text-justify">
                     <br><br>
