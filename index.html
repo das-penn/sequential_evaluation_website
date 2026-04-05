@@ -116,10 +116,10 @@
                 <p class="text-justify">
                     We motivate the importance of NSCORE and related evaluation procedures by making concrete the specific research questions NSCORE answers, and the specific error risks NSCORE allows the researcher to control.
                     <br><br>
-                    Assume that a robotics researcher proposes a novel methodology: a new training dataset, a new architecture, a new surrogate loss or regularization, etc. Using this new method, they will synthesize a robot policy, termed either &pi<sub>1</sub> or &pi<sub>B</sub>. For a given (set of) task(s), there will be a natural baseline -- the previous state-of-the-art policy, termed &pi<sub>0</sub> or &pi<sub>A</sub>. To assess the result of complex or abstract changes in methodology, the researcher must demonstrate <i>empirical improvement</i> of &pi<sub>1</sub> over &pi<sub>0</sub>. There are a natural set of objectives in making this comparison:
+                    Assume that a robotics researcher proposes a novel methodology: a new training dataset, a new architecture, a new surrogate loss or regularization, etc. Using this new method, they will synthesize a robot policy, termed either &pi;<sub>1</sub> or &pi;<sub>B</sub>. For a given (set of) task(s), there will be a natural baseline -- the previous state-of-the-art policy, termed &pi;<sub>0</sub> or &pi;<sub>A</sub>. To assess the result of complex or abstract changes in methodology, the researcher must demonstrate <i>empirical improvement</i> of &pi;<sub>1</sub> over &pi;<sub>0</sub>. There are a natural set of objectives in making this comparison:
                     <ol>
-                        <li>Type-1 Error: The risk that the researcher concludes &pi<sub>1</sub> is better than &pi<sub>0</sub>, when it is <i> not better</i> (FALSE POSITIVE). </li>
-                        <li>Type-2 Error: The risk that the researcher concludes &pi<sub>1</sub> is <i>not</i> better than &pi<sub>0</sub>, when it <i> is better</i> (FALSE NEGATIVE).</li>
+                        <li>Type-1 Error: The risk that the researcher concludes &pi;<sub>1</sub> is better than &pi;<sub>0</sub>, when it is <i> not better</i> (FALSE POSITIVE). </li>
+                        <li>Type-2 Error: The risk that the researcher concludes &pi;<sub>1</sub> is <i>not</i> better than &pi;<sub>0</sub>, when it <i> is better</i> (FALSE NEGATIVE).</li>
                         <li>Expected Sample Complexity: The number of evaluation trials needed (on average) to make a decision at a given level of Type-1 and Type-2 Error.</li>
                     </ol>
                     <br><br>
