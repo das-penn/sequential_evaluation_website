@@ -122,8 +122,8 @@
                         <li>Type-2 Error: The risk that the researcher concludes &pi;<sub>1</sub> is <i>not</i> better than &pi;<sub>0</sub>, when it <i> is better</i> (FALSE NEGATIVE).</li>
                         <li>Expected Sample Complexity: The number of evaluation trials needed (on average) to make a decision at a given level of Type-1 and Type-2 Error.</li>
                     </ol>
-                    <br><br>
-                    Expressed in terms of optimization objectives, the researcher needs an evaluation method that is: 
+                    <br>
+                    In terms of optimization objectives the researcher needs an evaluation method that is: 
                     <ol>
                         <li>Not too optimistic (controls Type-1 Error). </li>
                         <li>Not too pessimistic (minimizes Type-2 Error).</li>
@@ -137,7 +137,7 @@
             <div class="col-md-12 col-lg-10">
                 <br><br>
                 <h3>
-                    Problem formulation
+                    NSCORE formulation
                 </h3>
                 <p class="text-justify">
                     We consider the problem of policy comparison for two robot policies using any bounded evaluation metric. We consider the quantity of interest to be the <i>mean</i> performance of the policy; this yields a canonical statistical testing problem of <i>mean comparison</i>, corresponding to null (red) and alternative (blue) hypotheses as shown below:
@@ -185,8 +185,11 @@
                     NSCORE and Baselines
                 </h3>
                 <p class="text-justify">
-                    Natural policy comparison procedures can be organized according to the degree of structural assumptions required for <i>statistical validity</i> (i.e., Type-1 Error Control). 
+                    Statistically rigorous policy comparison procedures can be organized according to the degree of structural assumptions required for <i>statistical validity</i> (i.e., Type-1 Error Control). We will show that, excepting the specific case of binary success/failure metrics (considered in <a href="https://tri-ml.github.io/step/">prior work</a>), NSCORE matches or exceeds existing SOTA evaluation methods. 
                     <br>
+                    <p style="text-align:center;">
+                        <image src="img/situating_nscore.png" width="75%">
+                    </p>
                 <p class="text-justify">
                     STEP demonstrates near-optimal statistical power across a range of sample complexity scales (order ~5 -- 500), corresponding to comparison instances of varying difficulty. In so doing, it Pareto dominates existing methods in the finite-sample regime (e.g., for evaluation trial counts less than ~1000), as shown in the following plot: 
                     <br><br>
