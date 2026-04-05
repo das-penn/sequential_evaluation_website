@@ -195,20 +195,20 @@
                     </p>
                 <p class="text-justify">
                     <br><br>
-                    We next compare NSCORE<sub>2</sub> and &Theta;-SAVI on the TRI LBM hardware data from Barreiros, et. al., 2025, using the structured binary success-failure metrics (right-hand side). We observe exact overlap in time-to-decision for each method on each task, illustrating the near-quivalence of the methods when the data is known to be Bernoulli <i>a priori</i>.
+                    We next compare NSCORE<sub>2</sub> and &Theta;-SAVI on the TRI LBM hardware data from <a href="https://toyotaresearchinstitute.github.io/lbm1/" target="_blank" rel="noopener noreferrer">Barreiros, et. al., 2025</a>, using the structured binary success-failure metrics (right-hand side). We observe exact overlap in time-to-decision for each method on each task, illustrating the near-quivalence of the methods when the data is known to be Bernoulli <i>a priori</i>.
                     <br>
                     <p style="text-align:center;">
                         <image src="img/nscore_vs_thetaSavi_TRI.png" width="95%">
                     </p>
                 <p class="text-justify">
-                    Next, we compare fully nonparametric methods on general progress metrics by comparing NSCORE<sub>&infin;</sub> with the WSR procedure. On simulated data from progress metrics of policies trained on the RL Mujoco baselines, we observe the desired Pareto dominance: when the comparisons are easy, NSCORE<sub>&infin;</sub> and WSR are similar; when the comparisons are hard, NSCORE<sub>&infin;</sub> significantly outperforms WSR. 
+                    Next, we compare fully nonparametric methods on general progress metrics by comparing NSCORE<sub>&infin;</sub> with the WSR procedure. On simulated data from progress metrics of policies trained on the RL Mujoco baselines (using the <a href="https://github.com/vwxyzjn/cleanrl" target="_blank" rel="noopener noreferrer">CleanRL Implementation</a>), we observe the hypothesized Pareto dominance: when the comparisons are easy, NSCORE<sub>&infin;</sub> and WSR are similar; when the comparisons are hard, NSCORE<sub>&infin;</sub> significantly outperforms WSR. 
                     <br>
                     <p style="text-align:center;">
                         <image src="img/nscore_vs_wsr_RL.png" width="85%">
                     </p>
                 <p class="text-justify">
                     <br><br>
-                    Finally, we compare NSCORE<sub>&infin;</sub> and &Theta;-SAVI on the RoboArena hardware data from Atreya, et. al., 2025, simultaneously comparing four policies to effect a complete, statistically valid ranking. Each policy has 641 rollouts in the dataset; data for the policy is added until each pairwise comparison including that policy is terminated. Note how quickly PG-Bin is separated from every other method (18 trials or fewer per comparison); sequential comparison allows for active decisions over which data to collect, and the benefits can be amplified in multihypothesis settings (i.e., with more than 2 policies). The total number of requisite evaluations can be taken by summing over the numbers in each figure. From 2560 total evals in the dataset, NSCORE<sub>&infin;</sub> requires only 1440 for a full ranking; WSR requires 1880, and fails to separate PG-Diff from &pi;<sub>0</sub>.
+                    Finally, we compare NSCORE<sub>&infin;</sub> and &Theta;-SAVI on the RoboArena hardware data from <a href="https://robo-arena.github.io/" target="_blank" rel="noopener noreferrer">Atreya, et. al., 2025</a>, simultaneously comparing four policies to effect a complete, statistically valid ranking. Each policy has 641 rollouts in the dataset; data for the policy is added until each pairwise comparison including that policy is terminated. Note how quickly PG-Bin is separated from every other method (18 trials or fewer per comparison); sequential comparison allows for active decisions over which data to collect, and the benefits can be amplified in multihypothesis settings (i.e., with more than 2 policies). The total number of requisite evaluations can be taken by summing over the numbers in each figure. From 2560 total evals in the dataset, NSCORE<sub>&infin;</sub> requires only 1440 for a full ranking; WSR requires 1880, and fails to separate PG-Diff from &pi;<sub>0</sub>.
                     <br>
                     <p style="text-align:center;">
                         <image src="img/nscore_vs_wsr_RoboArena.png" width="95%">
@@ -241,7 +241,7 @@
                     Sensitivity to &alpha;
                 </h3>
                 <p class="text-justify">
-                    The dynamical system intuition allows us to formalize the logarithmic dependence of the expected time-to-decision on the Type-1 Error level, &alpha;. For a given evaluation problem (or distribution of evaluation problems), there exists an aggregate expected growth rate. Thus, the expected scaling of time-to-decision is logarithmic in &alpha;. We show this for synthetic nonparametric data, using NSCORE<sub>&infin;</sub> to regress on time-to-decision. We estimate for this distribution of evaluation problems an approximate expected growth rate of 1.10, resulting in an expected increase of 23.4 additional evals per 10x reduction in &alpha;. 
+                    The dynamical system intuition allows us to formalize the logarithmic dependence of the expected time-to-decision on the Type-1 Error level, &alpha;. For a given evaluation problem (or distribution of evaluation problems), there exists an aggregate expected growth rate. Thus, the expected scaling of time-to-decision is logarithmic in &alpha;. We show this for synthetic nonparametric data, using NSCORE<sub>&infin;</sub> to regress on time-to-decision. We estimate for this distribution of evaluation problems an approximate expected growth rate of 1.103, resulting in an expected increase of 23.4 additional evals per 10x reduction in &alpha;. 
                     <br>
                     <p style="text-align:center;">
                         <image src="img/TTD_vs_alpha_nonparametric_synthetic_data.png" width="95%">
