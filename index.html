@@ -129,13 +129,26 @@
                 </h3>
                 <p class="text-justify">
                     NSCORE utilizes intuition from safe, anytime-valid inference (SAVI) procedures to construct a dynamical system based upon the evaluation outcomes. This system is designed to be stable (in expectation) under the null hypothesis and unstable under the alternative. Then, Ville's Inequality provides a rigorous method to translate instability of the system into interpretable evidence for the null and alternative, respectively. Efficiency resides in constructing a `good' dynamical system. 
-                    <div class="row mt-4">
-                        <div class="col-md-12 text-center">
-                            <video id="v0" width="75%" preload="metadata" playsinline muted loop autoplay>
-                                <source src="videos/Dynamical_Systems.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
+                </p>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <video id="v1" width="75%" preload="metadata" playsinline muted loop autoplay>
+                    <source src="videos/Dynamical_Systems.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+         <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <br>
+                <p class="text-justify">
+                    Intuitively: NSCORE creates an adaptive dynamical system that grows maximially quickly when the novel policy mean is greater (i.e., in the blue region) _at a rate dependent on how close the means are_, and decays maximally quickly when the novel policy mean is lower (i.e., in the red region), again _at a rate dependent upon how close the means are_. This is accomplished via a betting mechanism that allows the system to adapt online:
+                    <br><p style="text-align:center;">
+                        <image src="img/evidence_aggregator.png" width="75%">
+                    </p>
             </div>
         </div>
 
