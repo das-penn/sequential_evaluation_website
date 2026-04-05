@@ -134,6 +134,7 @@
 
         <div class="row justify-content-md-center">
             <div class="col-md-12 col-lg-10">
+                <br>
                 <h3>
                     NSCORE formulation
                 </h3>
@@ -187,22 +188,35 @@
                         <image src="img/situating_nscore.png" width="95%">
                     </p>
                 <p class="text-justify">
-                    STEP demonstrates near-optimal statistical power across a range of sample complexity scales (order ~5 -- 500), corresponding to comparison instances of varying difficulty. In so doing, it Pareto dominates existing methods in the finite-sample regime (e.g., for evaluation trial counts less than ~1000), as shown in the following plot: 
-                    <br><br>
+                    First, we demonstrate that NSCORE<sub>2</sub> closely approximates the structured &Theta;-SAVI method when structure is present. We illustrate this first on synthetic Bernoulli data, where we confirm that STEP is SOTA, but illustrate that NSCORE<sub>&infin;</sub> (which requires no structural assumptions) approximates the performance in terms of expected time-to-decision. NSCORE<sub>&infin;</sub> denotes the case with minimal structural prior, where an approximately 4-5% hit is taken in terms of time-to-decision. NSCORE<sub>2</sub> denotes the case where NSCORE is given the same parametric information as &Theta;-SAVI, and we observe that performance is exactly recovered (these times are the same up to statistical noise). Note, however, that <sub>2</sub> <i>remains valid</i> if the data is not binary (it is simply less efficient), whereas &Theta;-SAVI does not remain valid in that setting. 
+                    <br>
                     <p style="text-align:center;">
-                        <image src="img/Power_img.png" width="95%">
+                        <image src="img/nscore_vs_thetaSavi_synthetic_bernoulli.png" width="75%">
                     </p>
                 <p class="text-justify">
                     <br><br>
-                    Additionally, STEP explicitly controls the false positive rate (Type-I Error rate) uniformly across the space of worst-case null hypotheses, which ensures maximal efficiency in the `spending' of risk. This is shown in the uniformly light blue shade of the FPR plot, below.
-                    <br><br>
+                    We next compare NSCORE<sub>2</sub> and &Theta;-SAVI on the TRI LBM hardware data from Barreiros, et. al., 2025, using the structured binary success-failure metrics (right-hand side). We observe exact overlap in time-to-decision for each method on each task, illustrating the near-quivalence of the methods when the data is known to be Bernoulli <i>a priori</i>.
+                    <br>
                     <p style="text-align:center;">
-                        <image src="img/FPR_img.png" width="95%">
+                        <image src="img/nscore_vs_thetaSavi_TRI.png" width="95%">
+                    </p>
+                <p class="text-justify">
+                    Next, we compare fully nonparametric methods on general progress metrics by comparing NSCORE<sub>&infin;</sub> with the WSR procedure. On simulated data from progress metrics of policies trained on the RL Mujoco baselines, we observe the desired Pareto dominance: when the comparisons are easy, NSCORE<sub>&infin;</sub> and WSR are similar; when the comparisons are hard, NSCORE<sub>&infin;</sub> significantly outperforms WSR. 
+                    <br>
+                    <p style="text-align:center;">
+                        <image src="img/nscore_vs_wsr_RL.png" width="95%">
+                    </p>
+                <p class="text-justify">
+                    <br><br>
+                    Finally, we compare NSCORE<sub>&infin;</sub> and &Theta;-SAVI on the RoboArena hardware data from Atreya, et. al., 2025, simultaneously comparing four policies to effect a complete, statistically valid ranking. Each policy has 641 rollouts in the dataset; data for the policy is added until each pairwise comparison including that policy is terminated. Note how quickly PG-Bin is separated from every other method (18 trials or fewer per comparison); sequential comparison allows for active decisions over which data to collect, and the benefits can be amplified in multihypothesis settings (i.e., with more than 2 policies). The total number of requisite evaluations can be taken by summing over the numbers in each figure. From 2560 total evals in the dataset, NSCORE<sub>&infin;</sub> requires only 1440 for a full ranking; WSR requires 1880, and fails to separate PG-Diff from &pi;<sub>0</sub>.
+                    <br>
+                    <p style="text-align:center;">
+                        <image src="img/nscore_vs_wsr_RoboArena.png" width="95%">
                     </p>
             </div>
         </div>
 
-        <div class="row justify-content-md-center">
+        <!-- <div class="row justify-content-md-center">
             <div class="col-md-12 col-lg-10">
                 <br><br>
                 <h3>
@@ -218,27 +232,20 @@
                         <image src="img/Results_Table.png" width="95%">
                     </p>
             </div>
-        </div>
+        </div> -->
 
         <div class="row justify-content-md-center">
             <div class="col-md-12 col-lg-10">
-                <br><br>
+                <br>
                 <h3>
-                    Additional STEP properties
+                    Sensitivity to &alpha;
                 </h3>
                 <p class="text-justify">
-                    We discuss several properties of STEP evaluation with strong practical benefits to the user. 
-                    <br><br>
-                <p class="text-justify">
-                    STEP demonstrates significant robustness to the choice of n_max, allowing the user to conservatively allocate significant evaluation capacity <i>without requiring many additional trials in easy cases</i>. This is significantly more efficient than having to pre-select an exact batch size!
-                    <br><br>
-                    <div class="row mt-4">
-                        <div class="col-md-12 text-center">
-                            <video id="v0" width="75%" preload="metadata" playsinline muted loop autoplay>
-                                <source src="videos/Robust_to_Nmax_Trimmed_Braked_v1.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
+                    The dynamical system intuition allows us to formalize the logarithmic dependence of the expected time-to-decision on the Type-1 Error level, &alpha;. For a given evaluation problem (or distribution of evaluation problems), there exists an aggregate expected growth rate. Thus, the expected scaling of time-to-decision is logarithmic in &alpha;. We show this for synthetic nonparametric data, using NSCORE<sub>&infin;</sub> to regress on time-to-decision. We estimate for this distribution of evaluation problems an approximate expected growth rate of 1.10, resulting in an expected increase of 23.4 additional evals per 10x reduction in &alpha;. 
+                    <br>
+                    <p style="text-align:center;">
+                        <image src="img/TTD_vs_alpha_nonparametric_synthetic_data.png" width="95%">
+                    </p>
                 <p class="text-justify">
                     <br><br>
                     Additionally, STEP efficiently adapts to the underlying problem difficulty, ensuring that at all difficulty levels of the underlying comparison (i.e., easy cases with large gaps and hard cases with small gaps) the decision is made with near-optimal expected sample complexity. 
